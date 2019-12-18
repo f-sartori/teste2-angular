@@ -1,0 +1,213 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-1">
+       
+      </div>
+      <div class="col-10">
+          <br><br>
+          <!-- <h1>Quantidade de comentarios: {{comments.length | number}}</h1> -->
+         
+          <div class="container">
+             <div class="row">
+                <div class="col">
+                  1 of 3
+                </div>
+                <div class="col-5">
+
+                    <div class="card border-primary mb-3" style="max-width: 18rem;">
+                       
+                        <div class="card-body text-primary">
+                          <h5 class="card-title">Selecione um metodo de pesquisa:</h5>
+                          <p class="card-text">
+                              <input type="radio" name="stock" value="email" checked  (change)="onItemChange2($event)" [(ngModel)]="teste" >Email<br>
+                              <input type="radio" name="stock" value="nome" (change)="onItemChange($event)"   [(ngModel)]="teste">Nome<br>
+                             
+                              <input type="radio" name="stock" value ="comentario" (change)="onItemChange($event)" [(ngModel)]="teste" >Comentario<br>
+                    
+                          </p>
+                        </div>
+                      </div>
+                   
+                  
+                </div>
+                <div class="col">
+                  3 of 3
+                </div>
+              </div>
+            </div>
+
+
+
+        
+          <!-- Inicio da pesquisa por email -->
+      <div  *ngIf="teste == 'email' ; else falso">
+               
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                
+              </div>
+              <div class="col-5">
+
+                  <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Pesquisar</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Pesquisar por email" [(ngModel)]="filtroPesquisa" >
+                    </div>                 
+                     </div>
+              <div class="col">
+               
+              </div>
+            </div>
+          </div>
+       
+        <div  *ngIf="filtroPesquisa != null; else elseBlock">   
+            <table class="table table-striped">
+                
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Comentario</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let comment1 of commentsFiltrados">
+                    <th scope="row">{{comment1.name}}</th>
+                    <td>{{comment1.email}}</td>
+                    <td>{{comment1.body}}</td>
+                    </tr>
+                                
+                </tbody>
+              </table>
+          </div>
+      
+      
+      
+      </div>
+      <ng-template #falso>
+          <div  *ngIf="teste == 'nome' ; else falso2">  
+              <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      
+                    </div>
+                    <div class="col-5">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-default">Pesquisar</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Pesquisar por nome" [(ngModel)]="filtroPesquisaNome" >
+                          </div>
+                         
+                                      
+                    </div>
+                    <div class="col">
+                     
+                    </div>
+                  </div>
+                </div>
+          
+              <div  *ngIf="filtroPesquisaNome != null; else elseBlock">   
+                  <table class="table table-striped">
+                      
+                      <thead>
+                        <tr>
+                          <th scope="col">Nome</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Comentario</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let comment1 of namesFiltrados">
+                          <th scope="row">{{comment1.name}}</th>
+                          <td>{{comment1.email}}</td>
+                          <td>{{comment1.body}}</td>
+                          </tr>
+                                      
+                      </tbody>
+                    </table>
+                </div>
+            
+            </div>
+            <ng-template #falso2>
+            <div  *ngIf="teste == 'comentario' ; else elseBlock"> 
+                
+                <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        
+                      </div>
+                      <div class="col-5">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Pesquisar</span>
+                              </div>
+                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Pesquisar por comentraio" [(ngModel)]="filtroPesquisaEmail">
+                            </div>                                                    
+                         </div>
+                      <div class="col">
+                       
+                      </div>
+                    </div>
+                  </div>
+                <div  *ngIf="filtroPesquisaEmail != null; else elseBlock">   
+                    <table class="table table-striped">
+                        
+                        <thead>
+                          <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Comentario</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let comment1 of emailFiltrados">
+                            <th scope="row">{{comment1.name}}</th>
+                            <td>{{comment1.email}}</td>
+                            <td>{{comment1.body}}</td>
+                            </tr>
+                                        
+                        </tbody>
+                      </table>
+                  </div>
+             </div> 
+            </ng-template>
+            <ng-template #falso3></ng-template>
+      </ng-template> 
+     
+
+          
+      <ng-template #elseBlock>
+            <table class="table table-striped">
+            
+                    <thead>
+                      <tr >
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Comentario</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let comment of comments" >
+                        <th scope="row">{{comment.name}}</th>
+                        <td>{{comment.email}}</td>
+                        <td>{{comment.body}}</td>
+                        </tr>
+                                    
+                    </tbody>
+                  </table>
+      </ng-template>
+    </div>
+      <div class="col-1">
+       
+      </div>
+    </div>
+   
+  </div>

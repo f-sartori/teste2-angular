@@ -1,0 +1,53 @@
+
+
+
+
+<div style="text-align: center" class="container">
+    <div class="row">
+      <div class="col-1">
+       
+      </div>
+      <div  class="col-10">
+            <h1>Comentario</h1>
+            <input type="number" placeholder="Digite um numero" [(ngModel)]="id" (keyup)= "search()">
+            <input type="text" placeholder="Pesquisar por email" [(ngModel)]="email" (keyup)= "findAll()">
+            <input type="button" (click)= "search()" value ="Pesquisar por ID"> <br><br>
+        <div class="card text-white bg-dark mb-3" style="max-width: 75rem;">
+            <div class="card-header">{{comment.name}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{comment.email}}</h5>
+              <p class="card-text">{{comment.body}}</p>
+            </div>
+          </div>
+
+          <div  *ngIf="comment.email == email; else elseBlock">
+            <h1>Pesquisa por email</h1>
+          <div  class="card text-white bg-dark mb-3" style="max-width: 75rem;">
+                <div class="card-header">{{comment.name}}</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{comment.email}}</h5>
+                  <p class="card-text">{{comment.body}}</p>
+                </div>
+              </div>  
+          </div>
+          <ng-template #elseBlock>
+                <h1>Pesquisa por email</h1>
+                <div  class="card text-white bg-dark mb-3" style="max-width: 75rem;">
+                      <div class="card-header">Pesquise no campo acima</div>
+                      <div class="card-body">
+                        <h5 class="card-title">Pesquise no campo acima</h5>
+                        <p class="card-text">Pesquise no campo acima</p>
+                      </div>
+                    </div> 
+          </ng-template>
+
+          
+
+
+      </div>
+      <div class="col-1">
+       
+      </div>
+    </div>
+   
+  </div>
